@@ -12,6 +12,8 @@ import org.testng.annotations.Test;
 import pages.ToDoListPage;
 import utils.Driver;
 
+import static constant.Constant.*;
+
 public class ToDoTest extends BasePage {
 
     private Driver driver;
@@ -31,11 +33,11 @@ public class ToDoTest extends BasePage {
     @Test
     public void userCanSuccessfullyClearCompletedItemsOfAToDoItemListWithOneItemCompleted() {
 
-        toDoListPage.addNewToDoItem("Task 1");
-        toDoListPage.addNewToDoItem("Task 2");
+        toDoListPage.addNewToDoItem(TASK_1);
+        toDoListPage.addNewToDoItem(TASK_2);
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "The counter value: " + toDoListPage.getCounterValue() + "is not the same than quantity to do Items: " + toDoListPage.getCounterValue());
-        toDoListPage.completeSpecificToDoItem("Task 2");
-        toDoListPage.verifyIfASpecificToDoItemIsCompleted("Task 2");
+        toDoListPage.completeSpecificToDoItem(TASK_2);
+        toDoListPage.verifyIfASpecificToDoItemIsCompleted(TASK_2);
         toDoListPage.clickOnClearCompletedButton();
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "The counter value: " + toDoListPage.getCounterValue() + "is not the same than quantity to do Items: " + toDoListPage.getCounterValue());
         toDoListPage.verifyIfClearCompleteButtonIsHidden();
@@ -48,8 +50,8 @@ public class ToDoTest extends BasePage {
     @Test
     public void userCanSuccessfullyMakeDuplicateToDoItems() {
 
-        toDoListPage.addNewToDoItem("Task 1");
-        toDoListPage.addNewToDoItem("Task 1");
+        toDoListPage.addNewToDoItem(TASK_1);
+        toDoListPage.addNewToDoItem(TASK_1);
         Assert.assertTrue(toDoListPage.verifyIfTheTextOfToDoItemHasDuplicates("Task 1"), "The user cannot a todo item with the same text value");
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), 2, "The to do item list size should be equals 2 because enter two to do items");
         Assert.assertEquals(toDoListPage.getCounterValue(), 2, "The counter should be equals 2 because enter two to do items");
@@ -62,11 +64,11 @@ public class ToDoTest extends BasePage {
     @Test
     public void NumberOfLeftIsTheSameAsCountOfActiveTodoItemsInTheListWithAllFilter() {
 
-        toDoListPage.addNewToDoItem("Task 1");
-        toDoListPage.addNewToDoItem("Task 2");
-        toDoListPage.selectFilterOption("All");
+        toDoListPage.addNewToDoItem(TASK_1);
+        toDoListPage.addNewToDoItem(TASK_2);
+        toDoListPage.selectFilterOption(ALL_FILTER);
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "The counter value: " + toDoListPage.getCounterValue() + "is not the same than quantity to do Items: " + toDoListPage.getCounterValue());
-        toDoListPage.addNewToDoItem("Task 3");
+        toDoListPage.addNewToDoItem(TASK_3);
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "The counter value: " + toDoListPage.getCounterValue() + "is not the same than quantity to do Items: " + toDoListPage.getCounterValue());
     }
 
@@ -76,10 +78,10 @@ public class ToDoTest extends BasePage {
     @Description("THA-4: User can successfully delete a todo item of a todo item list with two todo items.")
     @Test
     public void UserCanSuccessfullyDeleteToDoItemOfAToDoItemListWithTwoToDoItems() {
-        toDoListPage.addNewToDoItem("Task 1");
-        toDoListPage.addNewToDoItem("Task 2");
+        toDoListPage.addNewToDoItem(TASK_1);
+        toDoListPage.addNewToDoItem(TASK_2);
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "The counter value: " + toDoListPage.getCounterValue() + "is not the same than quantity to do Items: " + toDoListPage.getCounterValue());
-        toDoListPage.deleteSpecificToDoItem("Task 2");
+        toDoListPage.deleteSpecificToDoItem(TASK_2);
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "The counter value: " + toDoListPage.getCounterValue() + "is not the same than quantity to do Items: " + toDoListPage.getCounterValue());
     }
 
@@ -89,9 +91,9 @@ public class ToDoTest extends BasePage {
     @Description("THA-5: User can successfully delete a todo item of a todo item list with only one todo item.")
     @Test
     public void UserCanSuccessfullyDeleteToDoItemOfAToDoItemListWithOnlyToDoItem() {
-        toDoListPage.addNewToDoItem("Task 1");
+        toDoListPage.addNewToDoItem(TASK_1);
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "");
-        toDoListPage.deleteSpecificToDoItem("Task 1");
+        toDoListPage.deleteSpecificToDoItem(TASK_1);
         toDoListPage.verifyIfListToDoListIsHidden();
     }
 
@@ -102,10 +104,10 @@ public class ToDoTest extends BasePage {
     @Test
     public void userCanSuccessfullyClearCompletedItemsOfAToDoItemListWithOnlyOneItemCompleted() {
 
-        toDoListPage.addNewToDoItem("Task 1");
+        toDoListPage.addNewToDoItem(TASK_1);
         Assert.assertEquals(toDoListPage.getToDoItemsListSize(), toDoListPage.getCounterValue(), "The ");
-        toDoListPage.completeSpecificToDoItem("Task 1");
-        toDoListPage.verifyIfASpecificToDoItemIsCompleted("Task 1");
+        toDoListPage.completeSpecificToDoItem(TASK_1);
+        toDoListPage.verifyIfASpecificToDoItemIsCompleted(TASK_1);
         toDoListPage.clickOnClearCompletedButton();
         toDoListPage.verifyIfListToDoListIsHidden();
         toDoListPage.verifyIfClearCompleteButtonIsHidden();
